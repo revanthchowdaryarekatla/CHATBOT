@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>React Basics</title>
+    <style>
+      body{
+        font-family: Arial;
+      }
+      input{
+        padding: 5px 10px;
+        border-radius: 3px;
+        border-width: 1px;
+        margin-top: 10px;
+      }
+      .login-signup{
+        background-color: rgb(0,123,255);
+        border: none;
+        border-radius: 5px;
+        color: white;
+        padding: 7px 12px;
+        margin-right: 10px;
+        margin-top: 10px;
+      }
+      .show-button{
+        margin-left: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="js-container"></div>
+    
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    <script type="text/babel">
+      const container = document.querySelector('.js-container');
+      function LoginForm(){
+        let [typeInput,setTypeInput]=React.useState(true);
+        function showPassword(){
+          if(typeInput)
+          setTypeInput(false);
+          else
+          setTypeInput(true);
+        }
+        return (
+          <>
+            <div>
+              <div>
+                <input placeholder="Email" />
+              </div>
+              <div>
+                <input type={typeInput?"password":"text"}
+                placeholder="Password" />
+                <button className="show-button"
+                onClick={showPassword}>Show</button>
+              </div> 
+            </div>
+            <button className="login-signup">Login</button>
+            <button className="login-signup">Sign up</button>
+          </>
+        );
+      }
+      function App(){
+        return (
+          <>
+            <p>
+              Hello, welcome to my website
+            </p>
+            <LoginForm/>
+          </>
+        );
+      }
+      ReactDOM.createRoot(container).render(<App/>);
+    </script>
+  </body>
+</html>
