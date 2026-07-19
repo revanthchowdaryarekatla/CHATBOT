@@ -1,19 +1,24 @@
 async function sendChatMessage(message) {
-  const response = await fetch('/api/chat', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ message })
-  });
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ message }),
+    });
 
-  const data = await response.json().catch(() => ({}));
+    const data = await response.json();
 
-  if (!response.ok) {
-    throw new Error(data.error || 'The chatbot is unavailable right now.');
+    if (!response.ok) {
+      throw new Error(data.error || "Failed to get response from chatbot.");
+    }
+
+    return data.reply;
+  } catch (error) {
+    console.error("Chat Error:", error);
+    throw new Error("Sorry, I couldn't connect to the AI. Please try again.");
   }
-
-  return data;
 }
 
-export { sendChatMessage };
+export default sendChatMessage;

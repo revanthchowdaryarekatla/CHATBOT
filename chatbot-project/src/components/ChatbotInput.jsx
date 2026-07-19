@@ -42,7 +42,7 @@ export function ChatbotInput({ chatMessages, setChatMessages }) {
       setChatMessages([
         ...newChatMessages,
         {
-          message: result.reply,
+          message: result,
           sender: 'robot',
           id: crypto.randomUUID()
         }
