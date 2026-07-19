@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import loadingSpinnerImage from '../assets/loading-spinner.gif';
-import { sendChatMessage } from '../services/chatbotService';
+import  sendChatMessage  from '../services/chatbotService';
 import './ChatbotInput.css';
 
 export function ChatbotInput({ chatMessages, setChatMessages }) {
